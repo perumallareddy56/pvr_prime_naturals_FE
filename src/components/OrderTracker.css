@@ -1,0 +1,164 @@
+.order-tracker-container {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tracker-wrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Base line (the grey dotted/dashed line) */
+.tracker-line-bg {
+  position: absolute;
+  top: 35px;
+  /* Center of the icon-wrapper (70px / 2) */
+  left: 35px;
+  /* Offset to start from middle of first icon */
+  right: 35px;
+  /* Offset to end at middle of last icon */
+  height: 4px;
+  background-image: linear-gradient(to right, #444 60%, rgba(255, 255, 255, 0) 0%);
+  background-position: bottom;
+  background-size: 15px 1px;
+  background-repeat: repeat-x;
+  z-index: 1;
+}
+
+.tracker-line-progress {
+  position: absolute;
+  top: 35px;
+  left: 35px;
+  height: 4px;
+  background: linear-gradient(90deg, #4CAF50, #81C784);
+  z-index: 2;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.tracker-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+  width: 100px;
+}
+
+.icon-wrapper {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2a2a2a;
+  /* Deep charcoal */
+  color: #666;
+  transition: all 0.5s ease;
+  border: 3px solid #444;
+  margin-bottom: 1rem;
+}
+
+.tracker-step.completed .icon-wrapper {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+  color: white;
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.4);
+}
+
+.tracker-step.current .icon-wrapper {
+  animation: pulse-green 2s infinite;
+  background-color: #4CAF50;
+  border-color: #fff;
+  color: white;
+}
+
+.step-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.tracker-step.completed .step-label,
+.tracker-step.current .step-label {
+  color: #4CAF50;
+  text-shadow: 0 0 10px rgba(76, 175, 80, 0.2);
+}
+
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px rgba(76, 175, 80, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .tracker-wrapper {
+    max-width: 100%;
+  }
+
+  .tracker-step {
+    width: 80px;
+  }
+
+  .icon-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+
+  .tracker-line-bg,
+  .tracker-line-progress {
+    top: 25px;
+    left: 25px;
+    right: 25px;
+  }
+
+  .step-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tracker-step {
+    width: 60px;
+  }
+
+  .icon-wrapper {
+    width: 40px;
+    height: 40px;
+  }
+
+  .tracker-line-bg,
+  .tracker-line-progress {
+    top: 20px;
+    left: 20px;
+    right: 20px;
+  }
+
+  .step-icon {
+    width: 18px;
+    height: 18px;
+  }
+}

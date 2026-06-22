@@ -1,0 +1,144 @@
+.marquee-container {
+    --items: 10;
+    --carousel-duration: 40s;
+    --carousel-width: min(90vw, 1200px);
+    --carousel-item-width: 280px;
+    --carousel-item-height: 480px;
+    --carousel-item-gap: 2rem;
+
+    position: relative;
+    width: var(--carousel-width);
+    height: var(--carousel-item-height);
+    overflow: clip;
+    margin: 2rem auto;
+}
+
+.marquee-container[mask] {
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 15% 85%,
+        transparent
+    );
+}
+
+.marquee-container:hover > article {
+    animation-play-state: paused;
+}
+
+.marquee-container > article {
+    position: absolute;
+    top: 0;
+    left: calc(100% + var(--carousel-item-gap));
+    width: var(--carousel-item-width);
+    height: var(--carousel-item-height);
+    will-change: transform;
+    animation-name: marquee-pvr;
+    animation-duration: var(--carousel-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-delay: calc(
+        var(--carousel-duration) / var(--items) * var(--i) * -1
+    );
+}
+
+@keyframes marquee-pvr {
+    100% {
+        transform: translateX(
+            calc(
+                (var(--items) * (var(--carousel-item-width) + var(--carousel-item-gap))) *
+                    -1
+            )
+        );
+    }
+}
+
+.marquee-card {
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 24px !important;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: grid;
+    grid-template-rows: 200px auto 1fr auto;
+    padding-bottom: 1.5rem;
+}
+
+.marquee-header, .marquee-body, .marquee-footer {
+    padding: 0 1.5rem;
+    min-width: 0;
+    width: 100%;
+}
+
+.marquee-card:hover {
+    border-color: var(--pvr-gold) !important;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+}
+
+.marquee-img-wrapper {
+    overflow: hidden;
+    height: 200px;
+}
+
+.marquee-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.marquee-card:hover .marquee-img-wrapper img {
+    transform: scale(1.1);
+}
+
+.marquee-content {
+    padding: 1.5rem;
+}
+
+.marquee-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.marquee-desc {
+    font-size: 0.8rem;
+    color: #ffffff;
+    opacity: 0.85;
+    margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.marquee-price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--pvr-gold);
+}
+
+.marquee-btn {
+    text-decoration: none;
+    background: transparent;
+    border: 1px solid var(--pvr-gold);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.marquee-btn:hover {
+    background: var(--pvr-gold);
+    color: black;
+}
