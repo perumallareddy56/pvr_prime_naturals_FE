@@ -8,6 +8,19 @@ const WebSocketContext = createContext();
 
 export const useWebSocket = () => useContext(WebSocketContext);
 
+// Build the WebSocket URL dynamically:
+// - In production (Vercel over HTTPS), use the Railway backend wss:// URL
+// - In development, use a relative /ws path (proxied by Vite)
+const getWsUrl = () => {
+  const backendUrl = import.meta.env.VITE_API_URL;
+  if (backendUrl) {
+    // Convert https://...railway.app/api  →  https://...railway.app/ws
+    return backendUrl.replace(/\/api$/, '') + '/ws';
+  }
+  // Local dev: relative path, Vite proxy handles it
+  return `${window.location.origin}/ws`;
+};
+
 export const WebSocketProvider = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
   const [stompClient, setStompClient] = useState(null);
@@ -18,7 +31,7 @@ export const WebSocketProvider = ({ children }) => {
 
   useEffect(() => {
     // Public subscriptions (even for guests)
-    const socket = new SockJS('http://localhost:8080/ws');
+    const socket = new SockJS(getWsUrl());
     const client = Stomp.over(socket);
     client.debug = null;
 

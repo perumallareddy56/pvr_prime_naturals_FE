@@ -3,11 +3,19 @@ import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 import { toast } from 'react-toastify';
 
+const getWsUrl = () => {
+  const backendUrl = import.meta.env.VITE_API_URL;
+  if (backendUrl) {
+    return backendUrl.replace(/\/api$/, '') + '/ws';
+  }
+  return `${window.location.origin}/ws`;
+};
+
 const useWebSocket = (currentUser) => {
   useEffect(() => {
     if (!currentUser || !currentUser.id) return;
 
-    const socket = new SockJS('/ws');
+    const socket = new SockJS(getWsUrl());
     const stompClient = Stomp.over(socket);
     stompClient.debug = null; // Disable debug logging for production feel
 
