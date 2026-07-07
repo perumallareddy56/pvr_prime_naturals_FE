@@ -92,7 +92,7 @@ export const WebSocketProvider = ({ children }) => {
       subscriptions.current['user'] = userSub;
 
       // Global Admin Subscriptions
-      if (currentUser.role === 'ADMIN') {
+      if (currentUser.roles?.includes('ROLE_ADMIN')) {
         const adminSub = stompClient.subscribe('/topic/orders/admin', (message) => {
           const order = JSON.parse(message.body);
           toast.warning(`New Order Placed! ID: #${order.id} from ${order.userName}`, {

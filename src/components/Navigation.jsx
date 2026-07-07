@@ -151,8 +151,8 @@ const Navigation = () => {
               </span>
             </div>
             <div className="top-bar-social d-flex align-items-center">
-              <a href="#" className="ms-3 text-muted hover-gold transition-all"><LuInstagram /></a>
-              <a href="#" className="ms-3 text-muted hover-gold transition-all"><LuFacebook /></a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="ms-3 text-muted hover-gold transition-all"><LuInstagram /></a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="ms-3 text-muted hover-gold transition-all"><LuFacebook /></a>
             </div>
           </Container>
         </div>

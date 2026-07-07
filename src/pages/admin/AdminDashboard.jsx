@@ -158,7 +158,7 @@ const AdminDashboard = () => {
                               </div>
                               <div>
                                   <div className="fw-bold text-white small">{order.userName}</div>
-                                  <div className="text-muted smallest opacity-50 text-uppercase letter-spacing-1">ID: {order.id * 123}</div>
+                                  <div className="text-muted smallest opacity-50 text-uppercase letter-spacing-1">Ref: #PVR-{order.id.toString().padStart(4, '0')}</div>
                               </div>
                             </div>
                           </td>

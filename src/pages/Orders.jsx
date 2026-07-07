@@ -212,7 +212,7 @@ const Orders = () => {
   const fetchOrders = async () => {
     try {
       const res = await api.get('/orders/user');
-      const activeOrders = res.data.filter(o => o.status === 'PLACED' || o.status === 'SHIPPED');
+      const activeOrders = res.data.filter(o => o.status === 'PLACED' || o.status === 'SHIPPED' || o.status === 'OUT_FOR_DELIVERY');
       setOrders(activeOrders);
     } catch (e) {
       console.error(e);

@@ -11,7 +11,6 @@ import {
   LuSparkles, 
   LuUserPlus,
   LuChevronRight,
-  LuShieldAlert,
   LuShieldCheck,
   LuEye,
   LuEyeOff

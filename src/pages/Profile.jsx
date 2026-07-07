@@ -39,7 +39,9 @@ const Profile = () => {
       navigate('/login');
       return;
     }
-    fetchProfile();
+    if (!authLoading && currentUser) {
+      fetchProfile();
+    }
   }, [currentUser, authLoading]);
 
   const fetchProfile = async () => {

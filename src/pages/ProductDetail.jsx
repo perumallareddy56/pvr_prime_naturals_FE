@@ -220,7 +220,7 @@ const ProductDetail = () => {
                     </div>
                     <div className="d-flex justify-content-between gap-3">
                        <p className="text-muted small italic flex-grow-1 opacity-75">"{rev.comment}"</p>
-                       {isAdmin && (
+                       {isAdmin() && (
                          <Button variant="link" className="text-danger p-0 hvr-grow" onClick={() => handleReviewDelete(rev.id)}>
                             <LuTrash2 size={16} />
                          </Button>

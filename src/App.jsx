@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
+import { WebSocketProvider } from './context/WebSocketContext';
 import Navigation from './components/Navigation';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -92,8 +93,6 @@ const AppContent = () => {
     </div>
   );
 };
-
-import { WebSocketProvider } from './context/WebSocketContext';
 
 const App = () => {
   return (

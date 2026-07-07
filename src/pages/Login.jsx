@@ -8,12 +8,9 @@ import {
   LuMail, 
   LuLock, 
   LuArrowRight, 
-  LuSparkles, 
   LuUser,
   LuShieldCheck,
   LuChevronRight,
-  LuFingerprint,
-  LuCpu,
   LuEye,
   LuEyeOff
 } from 'react-icons/lu';

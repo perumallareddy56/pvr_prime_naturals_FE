@@ -27,7 +27,7 @@ const menuItems = [
 ];
 
 const AdminLayout = () => {
-  const { logout, user } = useContext(AuthContext);
+  const { logout, currentUser } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -109,7 +109,7 @@ const AdminLayout = () => {
             </div>
             
             <div className="text-end d-none d-lg-block">
-              <div className="text-white small fw-bold">{user?.name || 'Administrator'}</div>
+              <div className="text-white small fw-bold">{currentUser?.name || 'Administrator'}</div>
               <div className="text-gold opacity-75 smallest fw-bold letter-spacing-1">ROOT OPERATOR</div>
             </div>
 
@@ -117,7 +117,7 @@ const AdminLayout = () => {
               <Dropdown.Toggle variant="link" className="p-0 border-0 no-caret">
                 <div className="user-avatar-premium rounded-circle bg-charcoal d-flex align-items-center justify-content-center text-gold fw-bold border border-white border-opacity-10 shadow-sm" 
                      style={{ width: '42px', height: '42px', fontSize: '1.1rem' }}>
-                  {(user?.name || 'A')[0].toUpperCase()}
+                  {(currentUser?.name || 'A')[0].toUpperCase()}
                 </div>
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu-dark shadow-premium border-white border-opacity-10 mt-3 p-2 rounded-4" style={{ background: 'var(--pvr-charcoal-light)' }}>

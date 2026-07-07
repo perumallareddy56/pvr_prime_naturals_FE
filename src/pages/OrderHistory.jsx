@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Container, Row, Col, Card, Badge, Table, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap';
 import api from '../services/api';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
@@ -11,7 +11,8 @@ import {
   LuCreditCard,
   LuWallet,
   LuMapPin,
-  LuShieldCheck
+  LuShieldCheck,
+  LuSmartphone
 } from 'react-icons/lu';
 import { useWebSocket } from '../context/WebSocketContext';
 import Pagination from '../components/Pagination';
@@ -106,9 +107,9 @@ const OrderCard = ({ order, getStatusColor, getStatusBadge, handleDeleteOrder })
               <div className="mb-4">
                 <div className="small text-white mb-1 text-uppercase letter-spacing-2 fw-bold" style={{ fontSize: '0.7rem' }}>Payment Method</div>
                 <div className="d-flex align-items-center">
-                  {order.paymentMethod === 'COD' ? <LuWallet className="fs-4 me-3 text-gold" /> : <LuCreditCard className="fs-4 me-3 text-gold" />}
+                  {order.paymentMethod === 'COD' ? <LuWallet className="fs-4 me-3 text-gold" /> : (order.paymentMethod === 'UPI' ? <LuSmartphone className="fs-4 me-3 text-gold" /> : <LuCreditCard className="fs-4 me-3 text-gold" />)}
                   <div>
-                    <div className="fw-bold">{order.paymentMethod === 'COD' ? 'Cash on Delivery' : 'Online Payment'}</div>
+                    <div className="fw-bold">{order.paymentMethod === 'COD' ? 'Cash on Delivery' : (order.paymentMethod === 'UPI' ? 'UPI Payment' : 'Online Payment')}</div>
                     <div className="text-white small opacity-75">Verified Secure</div>
                   </div>
                 </div>
@@ -218,7 +219,7 @@ const OrderHistory = () => {
         await api.delete(`/orders/${orderId}`);
         setOrders(orders.filter(o => o.id !== orderId));
       } catch (e) {
-        alert('Something went wrong while deleting the order. Please try again later.');
+        toast.error('Something went wrong while deleting the order. Please try again later.');
       }
     }
   };

@@ -3,7 +3,7 @@ import { Form, Button, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
 import { toast } from 'react-toastify';
-import { LuMail, LuArrowLeft, LuShieldCheck, LuSparkles } from 'react-icons/lu';
+import { LuMail, LuArrowLeft, LuShieldCheck } from 'react-icons/lu';
 import Logo from '../components/Logo';
 import useReveal from '../hooks/useReveal';
 
